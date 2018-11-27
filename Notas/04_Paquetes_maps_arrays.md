@@ -79,9 +79,9 @@ type PlatziCareer struct {
 func main() {
 	platziCourse := PlatziCourse{Name: "Go", Slug: "go", Skills: []string{"backend"}}
 	platziCourse1 := new(PlatziCourse)
-	platziCourse1.Name = "Go1"
-	platziCourse1.Slug = "go1"
-	platziCourse1.Skills = []string{"backend1"}
+	platziCourse1.Name = "Go"
+	platziCourse1.Slug = "go"
+	platziCourse1.Skills = []string{"backend"}
 	fmt.Println(platziCourse)
 }
 ```  
