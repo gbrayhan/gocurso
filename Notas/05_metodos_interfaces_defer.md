@@ -1,7 +1,7 @@
-## Metodos en **go**
-Se aplican a las estructuras y nos permiten trabajar de manera similar a la que lo hacemos con una clase en POO.
-  
-```golang   
+## Metodos en **go**  
+Se aplican a las estructuras y nos permiten trabajar de manera similar a la que lo hacemos con una clase en POO.  
+    
+```golang  
 func (p PlatziCourse) Subscribe(name string) {
 	fmt.Printf("La persona %s se ha registrado al curso %s \n", name, p.Name)	
 }
@@ -35,9 +35,9 @@ func callSubscribe(p Platzi) {
 	p.Subscribe("Alejandro")
 }
 ```
-## Defer
-Los defer en go son instrucciones que se implementan en una funcion y que se ejecutan solamente al final de dicha funcion.
-```golang
+## Defer  
+Los defer en go son instrucciones que se implementan en una funcion y que se ejecutan solamente al final de dicha funcion.  
+```golang  
 func deferTest() {
 	fmt.Println("La funcion InterfaceTest ha terminado")
 }
@@ -46,4 +46,4 @@ func InterfaceTest() {
 	defer deferTest()
 	platziCourse := PlatziCourse{Name: "Go", Slug: "go", Skills: []string{"backend"}}
 }
-```
+```  
