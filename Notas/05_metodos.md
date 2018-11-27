@@ -1,4 +1,5 @@
-## Los metodos en **go** se aplican a las estructuras y nos permiten trabajar de manera similar a la que lo hacemos con una clase en POO.  
+## Metodos en **go**
+Se aplican a las estructuras y nos permiten trabajar de manera similar a la que lo hacemos con una clase en POO.
   
 ```golang   
 func (p PlatziCourse) Subscribe(name string) {

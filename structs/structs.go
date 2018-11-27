@@ -18,3 +18,25 @@ func GetSlice(name string) {
 	fmt.Println(slice1)
 
 }
+
+// PlatziCourse es una estructura 
+type PlatziCourse struct {
+	Name   string
+	Slug   string
+	Skills []string
+}
+
+// PlatziCareer es una estrctura que toma los metodos de PlatziCourse
+type PlatziCareer struct {
+	PlatziCourse
+}
+
+// Subscribe es un metodo de PlatziCourse
+func (p PlatziCourse) Subscribe(name string) {
+	fmt.Printf("La persona %s se ha registrado al curso %s \n", name, p.Name)
+}
+
+// Subscribe es un metodo de PlatziCareer
+func (p PlatziCareer) Subscribe(name string) {
+	fmt.Printf("La persona %s se ha registrado a la carrera %s \n", name, p.Name)
+}
