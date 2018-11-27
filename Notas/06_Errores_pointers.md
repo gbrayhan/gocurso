@@ -25,4 +25,25 @@ if err != nil {
 }
 fmt.Println(number)
 ```  
+## Punteros en **go**  
+Nos permiten establecer variables que apuntan a direcciones de memoria para optimizar recursos.  
+  
+```golang  
+func pointerTest(){
+	a := 100
+	var b * int
+	b = &a
+	fmt.Println("Sin modificar")
+	fmt.Println(a, *b)
+	fmt.Println(&a, b)
+	pointerModify(b)
+	fmt.Println("Con una modificación")
+	fmt.Println(a, *b)
+	fmt.Println(&a, b)
+}
+
+func pointerModify(c  *int) {
+	*c = 10
+}
+```  
 
