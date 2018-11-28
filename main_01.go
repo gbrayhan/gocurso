@@ -10,7 +10,6 @@ import(
 	"github.com/gbrayhan/gocurso/numbers"
 
 )
-
 const holaMundo string = "Hola %s %s bienvenido al curso de golang.\n"
 
 func main() {
@@ -32,7 +31,6 @@ func main() {
 	fmt.Println(array)
 
 	// imprimir()
-
 	structs.GetArray()
 	structs.GetSlice(firstName)
 
@@ -40,11 +38,7 @@ func main() {
 	strings2()
 
 	flow.SwitchTest()
-
 }
-
-
-
 
 func imprimir() { 
 	str := "こんにちは世界"

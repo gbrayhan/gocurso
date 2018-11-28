@@ -1,34 +1,32 @@
-/**
- * Podemos usar canales para sincronizar la ejecución a través de goroutines.
- * Aquí hay un ejemplo del uso de una recepción de bloqueo para
- * esperar a que un goroutine termine.
- */
 package main
 
-import "fmt"
-import "time"
-
-/**
- * Esta es la función que ejecutaremos en una goroutine.
- * El canal done se usará para notificar a otra goroutine
- * que el trabajo de esta función está hecho.
- */
-
-func worker(done chan bool) {
-	fmt.Print("Trabajando...")
-	time.Sleep(2 * time.Second)
-	fmt.Println("Hecho")
-
-	// Enviar un valor para notificar que hemos terminado.
-	done <- true
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"time"
+)
+type Post struct {
+	UserId int `json : "userId"`
+	Id int `json : "id"`
+	Title string `json : "title"`
+	Body string `json : "body"`
 }
 
 func main() {
+	var cliente = &http.Client{Timeout: 10 * time.Second}
+	var url = "https://jsonplaceholder.typicode.com/posts"
 
-	// Poner en marcha la gorutine, dandole un canal para notificar
-	done := make(chan bool, 1)
-	go worker(done)
+	resp, err := cliente.Get(url)
+	if err != nil {
+		panic(err.Error())
+	}
+	var usuarios []Post
+	err = json.NewDecoder(resp.Body).Decode(&usuarios)
+	if err != nil {
+		panic(err.Error())
+	}
 
-	// Bloquear hasta que recibamos una notificación del trabajo terminado en el canal.
-	<-done
+	fmt.Println(usuarios[0].Body)
+
 }
