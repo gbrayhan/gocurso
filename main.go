@@ -6,7 +6,9 @@ import (
 	"net/http"
 	"time"
 )
+
 type Post struct {
+	// Se puede especificar como se llaman las variables del json
 	UserId int `json : "userId"`
 	Id int `json : "id"`
 	Title string `json : "title"`
