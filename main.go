@@ -1,42 +1,34 @@
+/**
+ * Podemos usar canales para sincronizar la ejecución a través de goroutines.
+ * Aquí hay un ejemplo del uso de una recepción de bloqueo para
+ * esperar a que un goroutine termine.
+ */
 package main
 
-import (
-	"fmt"
-	"github.com/gbrayhan/gocurso/maps"
-	"github.com/gbrayhan/gocurso/numbers"
-	"github.com/gbrayhan/gocurso/structs"
-)
+import "fmt"
+import "time"
 
-func pointerTest(){
-	a := 100
-	var b * int
-	b = &a
-	fmt.Println("Sin modificar")
-	fmt.Println(a, *b)
-	fmt.Println(&a, b)
-	pointerModify(b)
-	fmt.Println("Con una modificación")
-	fmt.Println(a, *b)
-	fmt.Println(&a, b)
+/**
+ * Esta es la función que ejecutaremos en una goroutine.
+ * El canal done se usará para notificar a otra goroutine
+ * que el trabajo de esta función está hecho.
+ */
+
+func worker(done chan bool) {
+	fmt.Print("Trabajando...")
+	time.Sleep(2 * time.Second)
+	fmt.Println("Hecho")
+
+	// Enviar un valor para notificar que hemos terminado.
+	done <- true
 }
-
-func pointerModify(c  *int) {
-	*c = 10
-}
-
 
 func main() {
 
-	fmt.Println( maps.GetMap("Alejandra",21))
-	structs.InterfaceTest()
+	// Poner en marcha la gorutine, dandole un canal para notificar
+	done := make(chan bool, 1)
+	go worker(done)
 
-	//structs.InterfaceTest()
-	number, err := numbers.Sum("50", 50)
-	if err != nil {
-		//panic(err)
-		fmt.Println(err)
-	}
-	fmt.Println(number)
-	pointerTest()
-
+	// Bloquear hasta que recibamos una notificación del trabajo terminado en el canal.
+	<-done
 }
